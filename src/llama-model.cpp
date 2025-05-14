@@ -12400,11 +12400,11 @@ struct llm_build_granite : public llm_graph_context {
                 Vcur = ggml_reshape_3d(ctx0, Vcur, n_embd_head, n_head_kv, n_tokens);
 
                 if (use_rope) {
-
                     if (!inp_pos) {
                         inp_pos = build_inp_pos();
                     }
-                    ggml_tensor * rope_factors = model.get_rope_factors(n_ctx_per_seq, il);
+
+                    ggml_tensor * rope_factors = model.get_rope_factors(cparams, il);
                     Qcur = ggml_rope_ext(
                             ctx0, Qcur, inp_pos, rope_factors,
                             n_rot, rope_type, n_ctx_orig, freq_base, freq_scale,
